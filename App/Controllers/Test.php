@@ -2,8 +2,10 @@
 
 namespace App\Controllers;
 
-class Test {
+class TestSomething {
     public function test() {
         echo "Hello from " . get_class($this);
     }
+
+
 }

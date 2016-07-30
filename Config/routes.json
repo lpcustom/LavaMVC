@@ -1,0 +1,13 @@
+{
+  "test": {
+    "controller": "App\\Controllers\\Test",
+    "actions": {
+      "test2": "somethingelse",
+      "foo"  : "bar"
+    }
+  },
+
+  "testapi": {
+    "controller": "App\\Controllers\\Api\\Test"
+  }
+}
