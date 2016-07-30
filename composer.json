@@ -1,0 +1,8 @@
+{
+  "name"      : "LavaMVC",
+  "version"   : "1.0.0",
+  "require"   : {},
+  "autoload"  : {
+    "psr-4"   : {"LavaMVC\\": "LavaMVC/"}
+  }
+}
