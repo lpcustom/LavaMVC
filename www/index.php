@@ -7,3 +7,4 @@ define("ROOT", dirname(__DIR__));
 
 $loader = require ROOT . '/vendor/autoload.php';
 
+$server = LavaMVC\Registries\Server::getInstance();
