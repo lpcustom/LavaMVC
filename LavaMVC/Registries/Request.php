@@ -6,8 +6,8 @@ use LavaMVC\Registry;
 
 class Request extends Registry {
 
-    protected function __construct() {
-        $this->_items = $_REQUEST;
+    public function __construct() {
+        $this->_items = (object) $_REQUEST;
     }
 
 }

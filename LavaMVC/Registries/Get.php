@@ -5,8 +5,8 @@ use LavaMVC\Registry;
 
 class Get extends Registry {
 
-    protected function __construct() {
-        $this->_items = $_GET;
+    public function __construct() {
+        $this->_items = (object) $_GET;
     }
 
 }

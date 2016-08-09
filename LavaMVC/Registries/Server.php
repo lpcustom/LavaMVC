@@ -48,7 +48,7 @@ use LavaMVC\Registry;
 
 class Server extends Registry {
 
-    protected function __construct() {
-        $this->_items = $_SERVER;
+    public function __construct() {
+        $this->_items = (object) $_SERVER;
     }
 }

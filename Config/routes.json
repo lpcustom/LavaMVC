@@ -1,7 +1,14 @@
 {
+  "_default": {
+    "controller": "App\\Controllers\\Home",
+    "actions"   : {
+      "_default": "index"
+    }
+  },
   "test": {
     "controller": "App\\Controllers\\Test",
     "actions": {
+      "test" : "test",
       "test2": "somethingelse",
       "foo"  : "bar"
     }

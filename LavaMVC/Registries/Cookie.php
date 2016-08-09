@@ -5,8 +5,8 @@ use LavaMVC\Registry;
 
 class Cookie extends Registry {
 
-    protected function __construct() {
-        $this->_items = $_COOKIE;
+    public function __construct() {
+        $this->_items = (object) $_COOKIE;
     }
 
 }

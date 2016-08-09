@@ -5,8 +5,8 @@ use LavaMVC\Registry;
 
 class Files extends Registry {
 
-    protected function __construct() {
-        $this->_items = $_FILES;
+    public function __construct() {
+        $this->_items = (object) $_FILES;
     }
 
 }

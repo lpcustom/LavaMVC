@@ -1,0 +1,29 @@
+{
+  "default" : {
+    "driver": "mysql",
+    "type"  : "write",
+    "host"  : "localhost",
+    "port"  : 3306,
+    "db"    : "lavamvc",
+    "user"  : "lavawrite",
+    "pass"  : "lavawrite"
+  },
+  "read"    : {
+    "driver": "mysql",
+    "type"  : "read",
+    "host"  : "localhost",
+    "port"  : 3306,
+    "db"    : "lavamvc2",
+    "user"  : "lavaread",
+    "pass"  : "lavaread"
+  },
+  "write": {
+    "driver": "mysql",
+    "type"  : "write",
+    "host"  : "localhost",
+    "port"  : 3306,
+    "db"    : "lavamvc",
+    "user"  : "lavawrite",
+    "pass"  : "lavawrite"
+  }
+}

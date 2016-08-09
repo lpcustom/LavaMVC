@@ -5,8 +5,8 @@ use LavaMVC\Registry;
 
 class Post extends Registry {
 
-    protected function __construct() {
-        $this->_items = $_POST;
+    public function __construct() {
+        $this->_items = (object) $_POST;
     }
 
 }
