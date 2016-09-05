@@ -1,20 +1,20 @@
 {
   "_default": {
-    "controller": "App\\Controllers\\Home",
+    "controller": "Home",
+    "method"    : "",
     "actions"   : {
       "_default": "index"
     }
   },
   "test": {
-    "controller": "App\\Controllers\\Test",
+    "controller": "Test",
     "actions": {
       "test" : "test",
       "test2": "somethingelse",
       "foo"  : "bar"
     }
   },
-
   "testapi": {
-    "controller": "App\\Controllers\\Api\\Test"
+    "controller": "Test"
   }
 }

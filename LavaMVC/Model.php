@@ -17,11 +17,11 @@ abstract class Model {
     public function query($sql, $data = null, $return = self::RETURN_NONE, $cache = null, $database = null, $verbose = false) {
         $sql        = trim(preg_replace('!\s+!', ' ', $sql));
         $output     = array();
-        $operation  = Database::TYPE_READ;
         if(!isset($database)) {
             $database = $this->_db;
         }
 
+        $operation  = Database::TYPE_READ;
         switch($return) {
             case self::RETURN_NONE:
                 $operation = Database::TYPE_WRITE;
@@ -34,16 +34,16 @@ abstract class Model {
                 $database->setType($return);
         }
 
-        if($operation == DataBase::TYPE_WRITE) {
+        if($operation === DataBase::TYPE_WRITE) {
             static::beforeWrite($sql, $data);
         } else {
             static::beforeRead($sql, $data);
         }
     }
 
-    abstract public function beforeWrite($sql, $data);
-    abstract public function beforeRead($sql, $data);
-    abstract public function afterWrite($sql, $data);
-    abstract public function afterRead($sql, $data);
+    public function beforeWrite($sql, $data) {}
+    public function beforeRead($sql, $data)  {}
+    public function afterWrite($sql, $data)  {}
+    public function afterRead($sql, $data)   {}
 
 }

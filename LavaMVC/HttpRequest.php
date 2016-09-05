@@ -21,16 +21,14 @@ class HttpRequest {
     }
 
     public function processRequest(Registries\Request $request) {
-        $controllerName = $this->_router->_default->controller;
+        $controllerName = 'App\\Controllers\\' . $this->_router->_default->controller;
         $actionName     = $this->_router->_default->actions->_default;
-
         if(isset($request->_params)) {
             $params = explode('/', $request->_params);
-
             if(count($params) > 0) {
                 $route1 = $params[0];
                 if(isset($this->_router->$route1)) {
-                    $controllerName = $this->_router->$route1->controller;
+                    $controllerName = 'App\\Controllers\\' . $this->_router->$route1->controller;
                 }
             }
 

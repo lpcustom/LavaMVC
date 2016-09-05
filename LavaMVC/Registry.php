@@ -22,6 +22,11 @@ abstract class Registry {
         }
     }
 
+    /**
+     * @param string $key
+     * @param string $value
+     * @return mixed
+     */
     public function __set($key, $value) {
         $this->_items->$key = $value;
     }

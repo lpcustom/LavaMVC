@@ -9,9 +9,6 @@ class Home extends Controller {
 
     public function index() {
         echo "Hi from home index\n";
-
         $user = new Users();
-        var_dump($user);
-
     }
 }
