@@ -16,4 +16,8 @@ class Home extends AbstractController {
         echo "Home::foo!";
     }
 
+    public function landing() {
+        echo "Landing Page";
+    }
+
 }

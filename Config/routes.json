@@ -1,38 +1,11 @@
 {
   "GET": {
-    "test"        : {
-      "controller": "Test",
-      "actions"   : {
-        "test"    : "test"
-      }
-    }
+    "test"    : {"controller": "Test","actions":{"test": "test"}}
   },
   "ANY": {
-    "_default": {
-      "controller": "Home",
-      "actions"   : {
-        "_default": "index"
-      }
-    },
-    "test"    : {
-      "controller": "Test",
-      "actions"   : {
-        "test" : "test",
-        "test2": "somethingelse",
-        "foo"  : "bar"
-      }
-    },
-    "home"    : {
-      "controller": "Home",
-      "actions"   : {
-        "_default": "index",
-        "index": "index",
-        "foo": "foo",
-        "bar": "bar"
-      }
-    },
-    "testapi" : {
-      "controller": "Test"
-    }
+    "_default": {"controller": "Home", "actions":{"_default": "landing"}},
+    "home"    : {"controller": "Home"},
+    "test"    : {"controller": "Test"},
+    "test_api": {"controller": "Api\\Test"}
   }
 }

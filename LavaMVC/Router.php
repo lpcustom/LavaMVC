@@ -17,14 +17,13 @@ class Router extends AbstractRegistry {
 
         if(isset($request->_params)) {
             $params = explode('/', $request->_params);
-            if(count($params) > 0) {
+            if(count($params) > 0 && !empty($params[0])) {
                 $route1 = $params[0];
             }
-            if(count($params) > 1) {
+            if(count($params) > 1 && !empty($params[1])) {
                 $route2 = $params[1];
             }
         }
-
         if($this->_checkRouteExists($method, $route1, $route2)) {
             $this->_controller  = 'App\\Controllers\\' . $this->$method->$route1->controller;
             $this->_action      = $this->$method->$route1->actions->$route2;
@@ -32,7 +31,18 @@ class Router extends AbstractRegistry {
             $this->_controller  = 'App\\Controllers\\' . $this->ANY->$route1->controller;
             $this->_action      = $this->ANY->$route1->actions->$route2;
         } else {
-            throw new \Exception("Route [" . $route1 . ', ' . $route2 . "] is not set in routes.json.");
+            if(isset($this->$method->$route1->controller)) {
+                $this->_controller   = 'App\\Controllers\\' . $this->$method->$route1->controller;
+            } else if(isset($this->ANY->$route1->controller)) {
+                $this->_controller   = "App\\Controllers\\" . $this->ANY->$route1->controller;
+            } else {
+                throw new \Exception("Route [" . $route1 . "] is not set in routes.json.");
+            }
+            if($route2 === "_default") {
+                $this->_action = 'index';
+            } else {
+                $this->_action       = $route2;
+            }
         }
     }
 
