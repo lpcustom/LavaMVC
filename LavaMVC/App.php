@@ -26,16 +26,26 @@ class App {
         $this->session      = new Registries\Session();
         try {
             $this->config       = new Config();
-            $this->httpRequest  = new HttpRequest($this->config);
-            $this->httpRequest->processRequest($this->request);
+            $this->httpRequest  = new HttpRequest($this->config, $this->server->REQUEST_METHOD);
+
+            $controllerName = $this->httpRequest->getController();
+            $actionName     = $this->httpRequest->getAction();
+
+            if(!class_exists($controllerName)) {
+                throw new \Exception("Controller \"" . $controllerName . "\" does not exist.");
+            }
+
+            if(!in_array($actionName, get_class_methods($controllerName))) {
+                throw new \Exception("Action \"" . $actionName . "\" does not exist on controller \"" . $controllerName . "\"");
+            }
+
+
+            $controller = new $controllerName($this);
+            $controller->beforeAction($actionName);
+            $controller->$actionName();
+            $controller->afterAction($actionName);
         } catch (\Exception $ex) {
             die($ex->getMessage());
         }
-
-
-        $cName = $this->httpRequest->getController();
-        $aName = $this->httpRequest->getAction();
-        $cont = new $cName($this);
-        $cont->$aName();
     }
 }

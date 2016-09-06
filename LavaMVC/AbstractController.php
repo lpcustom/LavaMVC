@@ -2,7 +2,7 @@
 
 namespace LavaMVC;
 
-abstract class Controller {
+abstract class AbstractController {
 
     public $app;
 
@@ -11,4 +11,6 @@ abstract class Controller {
     }
 
     abstract public function index();
+    public function beforeAction($action)   {}
+    public function afterAction($action)    {}
 }

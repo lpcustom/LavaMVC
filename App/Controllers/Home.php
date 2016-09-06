@@ -3,12 +3,17 @@
 namespace App\Controllers;
 
 use App\Models\Users;
-use LavaMVC\Controller;
+use LavaMVC\AbstractController;
 
-class Home extends Controller {
+class Home extends AbstractController {
 
     public function index() {
-        echo "Hi from home index\n";
+        echo "Hi from home index\n<br />";
         $user = new Users();
     }
+
+    public function foo() {
+        echo "Home::foo!";
+    }
+
 }

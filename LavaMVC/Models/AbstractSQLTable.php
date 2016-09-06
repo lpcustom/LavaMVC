@@ -2,9 +2,9 @@
 
 namespace LavaMVC\Models;
 
-use LavaMVC\Model;
+use LavaMVC\AbstractModel;
 
-abstract class SQLTable extends Model {
+abstract class AbstractSQLTable extends AbstractModel {
     protected $_table;
     protected $_primaryKey;
 

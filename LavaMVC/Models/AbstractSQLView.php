@@ -4,6 +4,6 @@ namespace LavaMVC\Models;
 
 use LavaMVC\Model;
 
-class SQLView extends Model {
+abstract class AbstractSQLView extends Model {
 
 }

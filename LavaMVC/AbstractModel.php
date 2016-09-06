@@ -2,7 +2,7 @@
 
 namespace LavaMVC;
 
-abstract class Model {
+abstract class AbstractModel {
 
     const RETURN_NONE = 0;
     const RETURN_ONE  = 1;

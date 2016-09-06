@@ -1,20 +1,38 @@
 {
-  "_default": {
-    "controller": "Home",
-    "method"    : "",
-    "actions"   : {
-      "_default": "index"
+  "GET": {
+    "test"        : {
+      "controller": "Test",
+      "actions"   : {
+        "test"    : "test"
+      }
     }
   },
-  "test": {
-    "controller": "Test",
-    "actions": {
-      "test" : "test",
-      "test2": "somethingelse",
-      "foo"  : "bar"
+  "ANY": {
+    "_default": {
+      "controller": "Home",
+      "actions"   : {
+        "_default": "index"
+      }
+    },
+    "test"    : {
+      "controller": "Test",
+      "actions"   : {
+        "test" : "test",
+        "test2": "somethingelse",
+        "foo"  : "bar"
+      }
+    },
+    "home"    : {
+      "controller": "Home",
+      "actions"   : {
+        "_default": "index",
+        "index": "index",
+        "foo": "foo",
+        "bar": "bar"
+      }
+    },
+    "testapi" : {
+      "controller": "Test"
     }
-  },
-  "testapi": {
-    "controller": "Test"
   }
 }

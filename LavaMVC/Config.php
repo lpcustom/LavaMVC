@@ -8,7 +8,7 @@ namespace LavaMVC;
  * @property \stdClass $databases
  * @property \stdClass $general
  */
-class Config extends Registry {
+class Config extends AbstractRegistry {
 
     public function __construct() {
         parent::__construct();
@@ -21,7 +21,7 @@ class Config extends Registry {
                         $itemName = substr($f, 0, strlen($f) - 5);
                         $this->_items->$itemName = json_decode(file_get_contents(ROOT . DIRECTORY_SEPARATOR . 'Config' . DIRECTORY_SEPARATOR . $f));
                         if(!isset($this->_items->$itemName)) {
-                            throw new \Exception($itemName . ".json may have contain an error.");
+                            throw new \Exception($itemName . ".json may contain an error.");
                         }
                     } catch (\Exception $ex) {
                         throw $ex;

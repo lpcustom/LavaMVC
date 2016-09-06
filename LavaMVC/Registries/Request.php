@@ -2,9 +2,9 @@
 
 namespace LavaMVC\Registries;
 
-use LavaMVC\Registry;
+use LavaMVC\AbstractRegistry;
 
-class Request extends Registry {
+class Request extends AbstractRegistry {
 
     public function __construct() {
         $this->_items = (object) $_REQUEST;

@@ -2,7 +2,7 @@
 
 namespace LavaMVC;
 
-abstract class Registry {
+abstract class AbstractRegistry {
 
     protected $_items;
 

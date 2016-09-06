@@ -1,7 +1,7 @@
 <?php
 
 namespace LavaMVC\Registries;
-use LavaMVC\Registry;
+use LavaMVC\AbstractRegistry;
 
 /**
  * Class LavaMVC\Registries\Server
@@ -46,7 +46,7 @@ use LavaMVC\Registry;
  * @property string     ORIG_PATH_INFO
  */
 
-class Server extends Registry {
+class Server extends AbstractRegistry {
 
     public function __construct() {
         $this->_items = (object) $_SERVER;

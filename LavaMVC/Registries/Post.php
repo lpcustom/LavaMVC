@@ -1,9 +1,9 @@
 <?php
 
 namespace LavaMVC\Registries;
-use LavaMVC\Registry;
+use LavaMVC\AbstractRegistry;
 
-class Post extends Registry {
+class Post extends AbstractRegistry {
 
     public function __construct() {
         $this->_items = (object) $_POST;

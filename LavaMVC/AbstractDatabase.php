@@ -2,7 +2,7 @@
 
 namespace LavaMVC;
 
-abstract class Database {
+abstract class AbstractDatabase {
     protected $_pdo;
     protected $_type;
     const TYPE_READ  = 'read';

@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use LavaMVC\Models\SQLTable;
+use LavaMVC\Models\AbstractSQLTable;
 use LavaMVC\Factories\Database;
 use LavaMVC\Config;
 
-class Users extends SQLTable {
+class Users extends AbstractSQLTable {
 
     public function __construct($database = null) {
         if(!isset($database)) {

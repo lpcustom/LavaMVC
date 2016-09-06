@@ -1,9 +1,9 @@
 <?php
 
 namespace LavaMVC\Registries;
-use LavaMVC\Registry;
+use LavaMVC\AbstractRegistry;
 
-class Session extends Registry {
+class Session extends AbstractRegistry {
 
     private $_flash;
 

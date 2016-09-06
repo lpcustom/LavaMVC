@@ -2,9 +2,9 @@
 
 namespace LavaMVC\Databases;
 
-use LavaMVC\Database;
+use LavaMVC\AbstractDatabase;
 
-class MySQL extends Database {
+class MySQL extends AbstractDatabase {
 
     public function __construct(\stdClass $config) {
         $dsn  = 'mysql:dbname=' . $config->db . ";host=" . $config->host . ";port=" . $config->port;
