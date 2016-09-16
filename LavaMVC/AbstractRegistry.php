@@ -1,19 +1,29 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace LavaMVC;
+
+/**
+ * Class AbstractRegistry
+ * @package LavaMVC
+ * @param \stdClass $_items
+ */
 
 abstract class AbstractRegistry {
 
     protected $_items;
 
-    public function __construct() {
-        $this->_items = new \stdClass();
-    }
-
     public function getAll() {
         return $this->_items;
     }
 
+    public function getCount() {
+        return count($this->_items);
+    }
+
+    /**
+     * @param $key
+     * @return null|mixed
+     */
     public function __get($key) {
         if(isset($this->_items->$key)) {
             return $this->_items->$key;
@@ -25,7 +35,6 @@ abstract class AbstractRegistry {
     /**
      * @param string $key
      * @param string $value
-     * @return mixed
      */
     public function __set($key, $value) {
         $this->_items->$key = $value;

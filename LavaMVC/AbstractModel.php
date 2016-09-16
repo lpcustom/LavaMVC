@@ -1,7 +1,12 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace LavaMVC;
 
+/**
+ * Class AbstractModel
+ * @package LavaMVC
+ * @param AbstractDatabase $_db
+ */
 abstract class AbstractModel {
 
     const RETURN_NONE = 0;
@@ -10,21 +15,37 @@ abstract class AbstractModel {
 
     protected $_db;
 
-    public function __construct(Database $db) {
+    /**
+     * AbstractModel constructor.
+     * @param AbstractDatabase $db
+     */
+    protected function __construct(AbstractDatabase $db) {
         $this->_db = $db;
     }
 
+    abstract public static function create($database = null);
+
+    /** @noinspection MoreThanThreeArgumentsInspection */
+    /**
+     * @param $sql
+     * @param string[]  $data
+     * @param int       $return
+     * @param null      $cache
+     * @param AbstractDatabase $database
+     * @param bool $verbose
+     * @throws \UnexpectedValueException
+     */
     public function query($sql, $data = null, $return = self::RETURN_NONE, $cache = null, $database = null, $verbose = false) {
         $sql        = trim(preg_replace('!\s+!', ' ', $sql));
         $output     = array();
-        if(!isset($database)) {
+        if(null === $database) {
             $database = $this->_db;
         }
 
-        $operation  = Database::TYPE_READ;
+        $operation  = AbstractDatabase::TYPE_READ;
         switch($return) {
             case self::RETURN_NONE:
-                $operation = Database::TYPE_WRITE;
+                $operation = AbstractDatabase::TYPE_WRITE;
                 break;
             case self::RETURN_ONE:
             case self::RETURN_MANY:
@@ -34,10 +55,10 @@ abstract class AbstractModel {
                 $database->setType($return);
         }
 
-        if($operation === DataBase::TYPE_WRITE) {
-            static::beforeWrite($sql, $data);
+        if($operation === AbstractDatabase::TYPE_WRITE) {
+            $this->beforeWrite($sql, $data);
         } else {
-            static::beforeRead($sql, $data);
+            $this->beforeRead($sql, $data);
         }
     }
 

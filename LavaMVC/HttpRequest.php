@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace LavaMVC;
 
@@ -17,9 +17,11 @@ class HttpRequest {
 
         $this->_controllerName  = $this->_router->getController();
         $this->_actionName      = $this->_router->getAction();
-        $temp                   = $request->_params;
-        $params                 = explode('/', $temp);
-        $this->_urlSegments     = array_slice($params,2);
+        if(null !== $request->_params) {
+            $temp               = $request->_params;
+            $params             = explode('/', $temp);
+            $this->_urlSegments = array_slice($params, 2);
+        }
     }
 
     /**
@@ -27,7 +29,7 @@ class HttpRequest {
      * @return string
      */
     public function getSegment($i) {
-        return isset($this->_urlSegments[$i]) ? $this->_urlSegments[$i] : null;
+        return $this->_urlSegments[$i] ?? null;
     }
 
     public function getController() {

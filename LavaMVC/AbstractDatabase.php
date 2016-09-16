@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace LavaMVC;
 
@@ -7,16 +7,18 @@ abstract class AbstractDatabase {
     protected $_type;
     const TYPE_READ  = 'read';
     const TYPE_WRITE = 'write';
-    abstract public function __construct(\stdClass $config);
 
+    /**
+     * @param $type
+     * @throws \UnexpectedValueException
+     */
     public function setType($type) {
-
         if($type === self::TYPE_READ) {
             $this->_type = self::TYPE_READ;
         } else if($type === self::TYPE_WRITE) {
             $this->_type = self::TYPE_WRITE;
         } else {
-            throw new \Exception('Invalid type specified for database.');
+            throw new \UnexpectedValueException('Invalid type specified for database.');
         }
     }
 }

@@ -1,7 +1,11 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace LavaMVC;
+use LavaMVC\Registries\Request;
 
+/**
+ * @property \stdClass ANY
+ */
 class Router extends AbstractRegistry {
 
     private $_controller;
@@ -11,16 +15,21 @@ class Router extends AbstractRegistry {
         $this->_items = $routes;
     }
 
-    public function setControllerAction($request, $method) {
-        $route1 = "_default";
-        $route2 = "_default";
+    /**
+     * @param Request $request
+     * @param $method
+     * @throws \UnexpectedValueException
+     */
+    public function setControllerAction(Request $request, $method) {
+        $route1 = '_default';
+        $route2 = '_default';
 
-        if(isset($request->_params)) {
+        if(null !== $request->_params && $request->getCount() > 0) {
             $params = explode('/', $request->_params);
-            if(count($params) > 0 && !empty($params[0])) {
+            if(!empty($params[0]) && count($params) > 0) {
                 $route1 = $params[0];
             }
-            if(count($params) > 1 && !empty($params[1])) {
+            if(!empty($params[1]) && count($params) > 1) {
                 $route2 = $params[1];
             }
         }
@@ -36,12 +45,11 @@ class Router extends AbstractRegistry {
             } else if(isset($this->ANY->$route1->controller)) {
                 $this->_controller   = "App\\Controllers\\" . $this->ANY->$route1->controller;
             } else {
-                throw new \Exception("Route [" . $route1 . "] is not set in routes.json.");
+                throw new \UnexpectedValueException('Route [' . $route1 . '] is not set in routes.json.');
             }
-            if($route2 === "_default") {
+            $this->_action       = $route2;
+            if($route2 === '_default') {
                 $this->_action = 'index';
-            } else {
-                $this->_action       = $route2;
             }
         }
     }

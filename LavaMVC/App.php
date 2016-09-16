@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace LavaMVC;
 
@@ -16,6 +16,10 @@ class App {
     public $config;
     public $httpRequest;
 
+    /**
+     * App constructor.
+     * @throws \UnexpectedValueException
+     */
     public function __construct() {
         $this->cookie       = new Registries\Cookie();
         $this->files        = new Registries\Files();
@@ -32,17 +36,18 @@ class App {
             $actionName     = $this->httpRequest->getAction();
 
             if(!class_exists($controllerName)) {
-                throw new \Exception("Controller \"" . $controllerName . "\" does not exist.");
+                throw new \UnexpectedValueException("Controller \"" . $controllerName . "\" does not exist.");
             }
 
-            if(!in_array($actionName, get_class_methods($controllerName))) {
-                throw new \Exception("Action \"" . $actionName . "\" does not exist on controller \"" . $controllerName . "\"");
+            if((null !== $actionName) && !in_array($actionName, get_class_methods($controllerName), false)) {
+                throw new \UnexpectedValueException("Action \"" . $actionName . "\" does not exist on controller \"" . $controllerName . "\"");
             }
-
 
             $controller = new $controllerName($this);
+            /** @noinspection PhpUndefinedMethodInspection */
             $controller->beforeAction($actionName);
             $controller->$actionName();
+            /** @noinspection PhpUndefinedMethodInspection */
             $controller->afterAction($actionName);
         } catch (\Exception $ex) {
             die($ex->getMessage());

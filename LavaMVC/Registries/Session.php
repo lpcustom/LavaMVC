@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace LavaMVC\Registries;
 use LavaMVC\AbstractRegistry;
@@ -8,10 +8,10 @@ class Session extends AbstractRegistry {
     private $_flash;
 
     public function __construct() {
-        if(!empty($_SESSION)) {
+        if($_SESSION) {
             $this->_items = (object) $_SESSION;
-            if(!empty($this->_items->_flash)) {
-                $this->_flash = $this->_item->_flash;
+            if(isset($this->_items->_flash)) {
+                $this->_flash = $this->_items->_flash;
                 unset($this->_items->_flash);
                 $this->save();
             }
@@ -35,11 +35,11 @@ class Session extends AbstractRegistry {
     }
 
     public function setFlash($key, $value) {
-        if(empty($this->_flash)) {
+        if(null === $this->_flash) {
             $this->_flash = array();
         }
         $this->_flash->$key = $value;
-        if(empty($this->_items->_flash)) {
+        if(null === $this->_items->_flash) {
             $this->_items->_flash = array();
         }
         $this->_items->_flash->$key = $value;
@@ -47,7 +47,7 @@ class Session extends AbstractRegistry {
     }
 
     public function getFlash($key) {
-        if(!empty($this->_flash->$key)) {
+        if(isset($this->_flash->$key)) {
             return $this->_flash->$key;
         }
         return null;
